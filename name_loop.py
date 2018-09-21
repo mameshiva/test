@@ -1,11 +1,12 @@
 import requests
+import pandas as pd
+import csv
 from bs4 import BeautifulSoup
 from requests import get
 from IPython.core.display import clear_output
 from time import sleep
 from random import randint
 from time import time
-import pandas as pd
 
 pages = [str(i) for i in range(1,3)]
 
@@ -29,11 +30,12 @@ for page in pages:
     cellyomis = page_html.find_all(class_="cell-yomi")
     yomis = [y.get_text() for y in cellyomis]
 
+    #Put it in a chart
     namelist_m = pd.DataFrame({
         'name': names,
         'yomi': yomis,
     })
-    print(namelist_m)
+    namelist_m.to_csv("namelist_m.csv")
 
 #Extract female list
 for page in pages:
@@ -52,8 +54,9 @@ for page in pages:
     cellyomis = page_html.find_all(class_="cell-yomi")
     yomis = [y.get_text() for y in cellyomis]
 
+    #Put it in a chart
     namelist_f = pd.DataFrame({
         'name': names,
         'yomi': yomis,
     })
-    print(namelist_f)
+    namelist_f.to_csv("namelist_f.csv")
