@@ -21,10 +21,6 @@ for page in pages:
 
     if response.status_code != 200:
             warn('Request: {}; Status code: {}'.format(requests, response.status_code))
-
-    if requests > 72:
-            warn('Number of requests was greater than expected.')  
-            break
     
     #Extract names and yomis
     page_html = BeautifulSoup(response.text, 'html.parser')
@@ -48,10 +44,6 @@ for page in pages:
 
     if response.status_code != 200:
             warn('Request: {}; Status code: {}'.format(requests, response.status_code))
-
-    if requests > 72:
-            warn('Number of requests was greater than expected.')  
-            break
     
     #Extract names and yomis
     page_html = BeautifulSoup(response.text, 'html.parser')
