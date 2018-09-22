@@ -3,14 +3,13 @@ import csv
 import bs4
 import requests
 import time
-import random
 
 pages = [str(i) for i in range(1,3)]
 
 #Extract male name list
 for page in pages:
     response = requests.get('https://b-name.jp/%E8%B5%A4%E3%81%A1%E3%82%83%E3%82%93%E5%90%8D%E5%89%8D%E8%BE%9E%E5%85%B8/m/%E3%81%82/?p=' + page)
-    time.sleep(random.randint(1,3))
+    time.sleep(5)
 
     if response.status_code != 200:
         warn('Request: {}; Status code: {}'.format(requests, response.status_code))
@@ -32,7 +31,7 @@ for page in pages:
 #Extract female list
 for page in pages:
     response = requests.get('https://b-name.jp/%E8%B5%A4%E3%81%A1%E3%82%83%E3%82%93%E5%90%8D%E5%89%8D%E8%BE%9E%E5%85%B8/f/%E3%81%82/?p=' + page)
-    time.sleep(random.randint(1,3))
+    time.sleep(5)
 
     if response.status_code != 200:
         warn('Request: {}; Status code: {}'.format(requests, response.status_code))
