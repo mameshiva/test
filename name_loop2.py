@@ -29,7 +29,9 @@ for hiragana in hiraganas:
         #Parse the content of the request with BeautifulSoup
         page_html = bs4.BeautifulSoup(response.text, 'html.parser')
 
-        #Scrape the name
+        #Scrape the genders
+        
+        #Scrape the names
         cellnames = page_html.find_all(class_="cell-name")
         name = [c.get_text() for c in cellnames]
         names.append(name)
@@ -42,3 +44,5 @@ for hiragana in hiraganas:
         #Print the lists
         print(names)
         print(yomis)
+
+        #Export to CSV
