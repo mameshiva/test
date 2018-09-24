@@ -10,7 +10,6 @@ names = []
 yomis = []
 
 #Setting URL parameters
-#Need to delete ぃ in between あ and い
 pages = [str(i) for i in range(1,3)]
 hiraganas = [chr(i) for i in range(ord('あ'), ord('い') + 1)]
 
@@ -39,8 +38,11 @@ for hiragana in hiraganas:
         #Scrape the genders
         cellgenders = namelist.find_all(class_=["icon-woman","icon-man"])
         cellgenders = [c.get('class')[0] for c in cellgenders]
-        #print(cellgender)
-        genders.extend(cellgenders)
+        for c in cellgenders:
+            if c == "icon-woman":
+                genders.append("female")
+            elif c == "icon-man":
+                genders.append("male")
 
         #Scrape the names
         cellnames = namelist.find_all(class_="cell-name")
@@ -67,5 +69,3 @@ print(result)
 with open('namelist_db.csv', 'w', newline='') as f:
     writer = csv.writer(f)
     writer.writerows(result)
-
-#Genders are still in "icon-" format. Want to label it as female, male.
