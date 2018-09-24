@@ -17,27 +17,30 @@ namelist = page_html.find(class_="namelist")
 
 #Extract all genders
 cellgenders = namelist.find_all(class_=["icon-woman","icon-man"])
-genders.append(cellgenders)
+cellgenders = [g.get('class')[0] for g in cellgenders]
+genders.extend(cellgenders)
 
 #Extract all names
 cellnames = namelist.find_all(class_="cell-name")
 name = [n.get_text() for n in cellnames]
-names.append(name)
+names.extend(name)
 
 #Extract all yomis
 cellyomis = namelist.find_all(class_="cell-yomi")
 yomi = [y.get_text() for y in cellyomis]
-yomis.append(yomi)
+yomis.extend(yomi)
+
+result = []
+for i in range(0, len(name)):
+    a = genders[i]
+    b = names[i]
+    c = yomis[i]
+    result.append([a, b, c])
+print(result)
 
 #Export list to CSV
-with open('namelist.csv', 'a', newline='') as f:
+with open('namelist.csv', 'w', newline='') as f:
     writer = csv.writer(f)
-    for g in genders:
-        writer.writerow(g)
-    for n in names:
-        writer.writerow(n)
-    for y in yomis:
-        writer.writerow(y)
+    writer.writerows(result)
 
-#Genders are still in tag format. Want to label it as female, male.
-#CSV is in a row but want to change it to columns.
+#Genders are still in "icon-" formant. Want to label it as female, male.
