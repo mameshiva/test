@@ -30,7 +30,7 @@ yomi = [y.get_text() for y in cellyomis]
 yomis.append(yomi)
 
 #Export list to CSV
-with open('namelist.csv', 'w', newline='') as f:
+with open('namelist.csv', 'a', newline='') as f:
     writer = csv.writer(f)
     for g in genders:
         writer.writerow(g)
