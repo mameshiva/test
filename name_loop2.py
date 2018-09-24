@@ -21,7 +21,7 @@ for hiragana in hiraganas:
     for page in pages:
         
         #Make a get request
-        response = requests.get('https://b-name.jp/%E8%B5%A4%E3%81%A1%E3%82%83%E3%82%93%E5%90%8D%E5%89%8D%E8%BE%9E%E5%85%B8/all/' + hiragana + '/?p=' + page)
+        response = requests.get('https://b-name.jp/%E8%B5%A4%E3%81%A1%E3%82%83%E3%82%93%E5%90%8D%E5%89%8D%E8%BE%9E%E5%85%B8/all/' + hiragana + '/?p=' + page + '&t=s&mode=1')
         
         #Pause the loop
         time.sleep(2)
