@@ -3,6 +3,7 @@ import requests
 import time
 
 #List to store data
+genders = []
 names = []
 yomis = []
 
@@ -30,7 +31,9 @@ for hiragana in hiraganas:
         page_html = bs4.BeautifulSoup(response.text, 'html.parser')
 
         #Scrape the genders
-        
+        cellgenders = namelist.find_all(class_=["icon-woman","icon-man"])
+        genders.append(cellgenders)
+
         #Scrape the names
         cellnames = page_html.find_all(class_="cell-name")
         name = [c.get_text() for c in cellnames]
@@ -42,6 +45,7 @@ for hiragana in hiraganas:
         yomis.append(yomi)
 
         #Print the lists
+        print(genders)
         print(names)
         print(yomis)
 
