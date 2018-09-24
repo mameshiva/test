@@ -30,6 +30,7 @@ cellyomis = namelist.find_all(class_="cell-yomi")
 yomi = [y.get_text() for y in cellyomis]
 yomis.extend(yomi)
 
+#Consolidate into result list
 result = []
 for i in range(0, len(name)):
     a = genders[i]
