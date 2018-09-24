@@ -15,13 +15,18 @@ namelist = page_html.find(class_="namelist")
 
 #Extract all genders
 cellgenders = namelist.find_all(class_=["icon-woman","icon-man"])
+genders.append(cellgenders)
 
 #Extract all names
 cellnames = namelist.find_all(class_="cell-name")
-name = [c.get_text() for c in cellnames]
+name = [n.get_text() for n in cellnames]
 names.append(name)
 
 #Extract all yomis
 cellyomis = namelist.find_all(class_="cell-yomi")
 yomi = [y.get_text() for y in cellyomis]
 yomis.append(yomi)
+
+print(genders)
+print(names)
+print(yomis)
