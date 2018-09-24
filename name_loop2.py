@@ -1,6 +1,7 @@
 import bs4
 import requests
 import time
+import csv
 
 #List to store data
 genders = []
@@ -8,13 +9,14 @@ names = []
 yomis = []
 
 #Setting URL parameters
+#Need to delete ぃ in between あ and い
 pages = [str(i) for i in range(1,3)]
-hiraganas = [chr(i) for i in range(ord('あ'), ord('ん') + 1)]
+hiraganas = [chr(i) for i in range(ord('あ'), ord('い') + 1)]
 
-#For every hiragana in the interval あ to ん
+#For every hiragana in the interval
 for hiragana in hiraganas:
 
-    #For every page in the interval 0-2
+    #For every page in the interval
     for page in pages:
         
         #Make a get request
@@ -30,23 +32,35 @@ for hiragana in hiraganas:
         #Parse the content of the request with BeautifulSoup
         page_html = bs4.BeautifulSoup(response.text, 'html.parser')
 
+        #Extract namelist
+        namelist = page_html.find(class_="namelist")
+
         #Scrape the genders
         cellgenders = namelist.find_all(class_=["icon-woman","icon-man"])
         genders.append(cellgenders)
+        #print(genders)
 
         #Scrape the names
-        cellnames = page_html.find_all(class_="cell-name")
-        name = [c.get_text() for c in cellnames]
+        cellnames = namelist.find_all(class_="cell-name")
+        name = [n.get_text() for n in cellnames]
         names.append(name)
-        
+        #print(names)
+
         #Scrape the yomis
-        cellyomis = page_html.find_all(class_="cell-yomi")
+        cellyomis = namelist.find_all(class_="cell-yomi")
         yomi = [y.get_text() for y in cellyomis]
         yomis.append(yomi)
+        #print(yomis)
 
-        #Print the lists
-        print(genders)
-        print(names)
-        print(yomis)
+#Export to CSV
+with open('namelist.csv', 'w') as f:
+    writer = csv.writer(f)
+    for g in genders:
+        writer.writerow(g)
+    for n in names:
+        writer.writerow(n)
+    for y in yomis:
+        writer.writerow(y)
 
-        #Export to CSV
+#Genders are still in tag format. Want to label it as female, male.
+#CSV is in a row but want to change it to columns.
