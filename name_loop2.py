@@ -2,6 +2,7 @@ import bs4
 import requests
 import time
 import csv
+import pandas as pd
 
 #List to store data
 genders = []
@@ -37,30 +38,34 @@ for hiragana in hiraganas:
 
         #Scrape the genders
         cellgenders = namelist.find_all(class_=["icon-woman","icon-man"])
-        genders.append(cellgenders)
-        #print(genders)
+        cellgenders = [c.get('class')[0] for c in cellgenders]
+        #print(cellgender)
+        genders.extend(cellgenders)
 
         #Scrape the names
         cellnames = namelist.find_all(class_="cell-name")
         name = [n.get_text() for n in cellnames]
-        names.append(name)
+        names.extend(name)
         #print(names)
 
         #Scrape the yomis
         cellyomis = namelist.find_all(class_="cell-yomi")
         yomi = [y.get_text() for y in cellyomis]
-        yomis.append(yomi)
+        yomis.extend(yomi)
         #print(yomis)
 
-#Export to CSV
-with open('namelist.csv', 'w') as f:
-    writer = csv.writer(f)
-    for g in genders:
-        writer.writerow(g)
-    for n in names:
-        writer.writerow(n)
-    for y in yomis:
-        writer.writerow(y)
+#Consolidate into result list
+result = []
+for i in range(0, len(names)):
+    a = genders[i]
+    b = names[i]
+    c = yomis[i]
+    result.append([a, b, c])
+print(result)
 
-#Genders are still in tag format. Want to label it as female, male.
-#CSV is in a row but want to change it to columns.
+#Export list to CSV
+with open('namelist_db.csv', 'w', newline='') as f:
+    writer = csv.writer(f)
+    writer.writerows(result)
+
+#Genders are still in "icon-" format. Want to label it as female, male.
