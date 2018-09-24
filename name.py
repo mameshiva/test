@@ -8,7 +8,7 @@ names = []
 yomis = []
 
 #Extract HTML
-page = requests.get("https://b-name.jp/%E8%B5%A4%E3%81%A1%E3%82%83%E3%82%93%E5%90%8D%E5%89%8D%E8%BE%9E%E5%85%B8/all/%E3%81%82/?p=1")
+page = requests.get("https://b-name.jp/%E8%B5%A4%E3%81%A1%E3%82%83%E3%82%93%E5%90%8D%E5%89%8D%E8%BE%9E%E5%85%B8/all/%E3%81%82/?p=1&t=s&mode=1")
 page_html = bs4.BeautifulSoup(page.content, 'html.parser')
 
 #Extract namelist
@@ -32,7 +32,7 @@ yomis.extend(yomi)
 
 #Consolidate into result list
 result = []
-for i in range(0, len(name)):
+for i in range(0, len(names)):
     a = genders[i]
     b = names[i]
     c = yomis[i]
