@@ -16,14 +16,16 @@ with open ('namelist_db.csv') as f:
         if row[0] == "male":
             male_list.append(row)   
 
-print("Directions: Type in the following letters.")
+print("Tutorial: Here's what you can do. Type in: ")
 print("[R] to save the name to My List.")
 print("[L] to save the name in Trash List.")
 print("[M] to see your current My List.")
 print("[T] to see your current Trash List.")
 print("[E] to exit.")
 
-gender_input = input("Select gender female / male / all ?: ")
+user_name = input("What is your name?: ")
+print("Hi " + user_name + "!")
+gender_input = input("Which name list do you want to see, female, male or all?: ")
 
 if gender_input == "female":
     for f in female_list:
@@ -42,6 +44,8 @@ if gender_input == "female":
             print("Here's your current My List!")
             print("My List", my_list)
             break
+    print("Here's your current My List!")
+    print("My List", my_list)
 
 if gender_input == "male":
     for f in male_list:
@@ -60,6 +64,8 @@ if gender_input == "male":
             print("Here's your current My List!")
             print("My List", my_list)
             break
+    print("Here's your current My List!")
+    print("My List", my_list)
 
 if gender_input == "all":
     for f in all_list:
@@ -78,3 +84,10 @@ if gender_input == "all":
             print("Here's your current My List!")
             print("My List", my_list)
             break
+    print("Here's your current My List!")
+    print("My List", my_list)
+
+#Export list to CSV
+with open('user_name.csv', 'w', newline='') as f:
+    writer = csv.writer(f)
+    writer.writerows(my_list)
