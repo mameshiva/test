@@ -91,6 +91,7 @@ if gender_input == "両方":
     print("ゴミ箱", trash_list)
 
 #Export list to CSV
-with open('user_name.csv', 'w', newline='') as f:
+filename = str(user_name + ".csv")
+with open(filename, 'w', newline='') as f:
     writer = csv.writer(f)
     writer.writerows(my_list)
