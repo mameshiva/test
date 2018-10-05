@@ -46,16 +46,17 @@ if gender_input == "1":
         if selection_input == "L":
             trash_list.append(r)
         if selection_input == "M":
-            print("マイリスト", my_list])
+            print("マイリスト", my_list)
         if selection_input == "T":
             print("ゴミ箱", trash_list)
         if selection_input == "E":
             print("またね！")
-            print("マイリスト", my_list])
+            print("マイリスト", my_list)
             break
+        female_list.remove(r)
     print("またね！")
-    print("マイリスト", my_list])
-    print("ゴミ箱", trash_list])
+    print("マイリスト", my_list)
+    print("ゴミ箱", trash_list)
 
 #If gender is male.
 if gender_input == "2":
@@ -70,16 +71,17 @@ if gender_input == "2":
         if selection_input == "L":
             trash_list.append(r)
         if selection_input == "M":
-            print("マイリスト", my_list])
+            print("マイリスト", my_list)
         if selection_input == "T":
-            print("ゴミ箱", trash_list])
+            print("ゴミ箱", trash_list)
         if selection_input == "E":
             print("またね！")
-            print("マイリスト", my_list])
+            print("マイリスト", my_list)
             break
+        male_list.remove(r)
     print("またね！")
-    print("マイリスト", my_list])
-    print("ゴミ箱", trash_list])
+    print("マイリスト", my_list)
+    print("ゴミ箱", trash_list)
 
 #If gender is both.
 if gender_input == "3":
@@ -94,16 +96,17 @@ if gender_input == "3":
         if selection_input == "L":
             trash_list.append(r)
         if selection_input == "M":
-            print("マイリスト", my_list])
+            print("マイリスト", my_list)
         if selection_input == "T":
-            print("ゴミ箱", trash_list])
+            print("ゴミ箱", trash_list)
         if selection_input == "E":
             print("またね！")
-            print("マイリスト", my_list])
+            print("マイリスト", my_list)
             break
+        all_list.remove(r)
     print("またね！")
-    print("マイリスト", my_list])
-    print("ゴミ箱", trash_list])
+    print("マイリスト", my_list)
+    print("ゴミ箱", trash_list)
 
 #Export list to CSV with user name.
 filename = str(user_name + ".csv")
